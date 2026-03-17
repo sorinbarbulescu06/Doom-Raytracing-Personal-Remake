@@ -1,13 +1,17 @@
-#include "raylib.h"
-#include <stdio.h>
+#include "Doom_Raytracing.h"
 
 int main()
 {
-    InitWindow(100, 100, "anplicatie");
+    triangle *arrow;
+    Initialize(&arrow);
+    Image mazeLogic = LoadImage("maze.png"); 
+    Texture2D mazeVisual = LoadTextureFromImage(mazeLogic);
     while(!WindowShouldClose()){
-        BeginDrawing();
-        ClearBackground(WHITE);
-        EndDrawing();
+        CheckRotation(arrow);
+        CheckMove(arrow);
+        CheckMargin(arrow, mazeLogic);
+        Movepos(arrow);
+        Draw(arrow, mazeVisual);
     }
     return 0;
 }
